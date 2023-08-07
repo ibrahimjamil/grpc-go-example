@@ -4,13 +4,13 @@ import (
 	"log"
 	"net"
 
-	pb "grpc_example/proto"
+	proto "grpc_example/proto"
 
 	"google.golang.org/grpc"
 )
 
 type Server struct {
-	pb.GreetServiceServer
+	proto.GreetServiceServer
 }
 
 func main() {
@@ -21,7 +21,7 @@ func main() {
 	}
 
 	grpcServer := grpc.NewServer()
-	pb.RegisterGreetServiceServer(grpcServer, &Server{})
+	proto.RegisterGreetServiceServer(grpcServer, &Server{})
 	log.Printf("Server started at %v", lis.Addr())
 
 	if err := grpcServer.Serve(lis); err != nil {
